@@ -80,6 +80,11 @@ describe Layer::Client do
         it 'should parse the JSON result' do
           expect(subject.send(method, '/')).to eq({ 'foo' => 'bar' })
         end
+
+        it 'should return nothing when there is no result' do
+          allow(RestClient::Request).to receive(:execute).and_return('')
+          expect(subject.send(method, '/')).to_not be
+        end
       end
 
       describe 'method' do

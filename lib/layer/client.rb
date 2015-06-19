@@ -67,7 +67,7 @@ module Layer
       payload = payload.to_json
 
       response = RestClient::Request.execute(method: method, url: url, payload: payload, headers: headers)
-      JSON.parse(response)
+      response.empty? ? nil : JSON.parse(response)
     end
 
   end
