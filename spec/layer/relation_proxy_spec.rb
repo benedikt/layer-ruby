@@ -27,6 +27,16 @@ describe Layer::RelationProxy do
       expect(subject.singleton_class.ancestors)
         .to include(Layer::Operations::Find::ClassMethods, Layer::Operations::Create::ClassMethods)
     end
+
+    it 'should allow adding additional methods' do
+      proxy = described_class.new(base, resource_type) do
+        def foo
+          'bar'
+        end
+      end
+
+      expect(proxy.foo).to eq('bar')
+    end
   end
 
   describe '.url' do

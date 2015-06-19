@@ -3,11 +3,13 @@ module Layer
 
     attr_reader :resource_type, :base
 
-    def initialize(base, resource_type, operations = [])
+    def initialize(base, resource_type, operations = [], &block)
       @resource_type = resource_type
       @base = base
 
       operations.each { |operation| singleton_class.include(operation::ClassMethods) }
+
+      instance_eval(&block) if block_given?
     end
 
     def url
