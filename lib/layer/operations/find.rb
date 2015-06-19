@@ -13,6 +13,11 @@ module Layer
         base.extend(ClassMethods)
       end
 
+      def reload
+        @attributes = client.get(url)
+        self
+      end
+
     end
   end
 end

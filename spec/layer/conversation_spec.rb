@@ -55,6 +55,21 @@ describe Layer::Conversation do
     end
   end
 
+  describe '#reload' do
+    before do
+      allow(client).to receive(:get).and_return(response)
+    end
+
+    it 'should reload the data from the server' do
+      subject.reload
+      expect(client).to have_received(:get).with(subject.url)
+    end
+
+    it 'should return itself' do
+      expect(subject.reload).to be(subject)
+    end
+  end
+
   describe '#messages' do
     it 'should return an relation proxy' do
       expect(subject.messages).to be_kind_of(Layer::RelationProxy)
