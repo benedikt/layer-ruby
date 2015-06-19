@@ -3,6 +3,10 @@ module Layer
     include Operations::Find
     include Operations::Create
 
+    def messages
+      RelationProxy.new(self, Message, [Operations::Create])
+    end
+
     def distinct?
       attributes['distinct']
     end

@@ -55,6 +55,20 @@ describe Layer::Conversation do
     end
   end
 
+  describe '#messages' do
+    it 'should return an relation proxy' do
+      expect(subject.messages).to be_kind_of(Layer::RelationProxy)
+    end
+
+    it 'should have Message as resource_type' do
+      expect(subject.messages.resource_type).to eq(Layer::Message)
+    end
+
+    it 'should support the create operation' do
+      expect(subject.messages).to be_kind_of(Layer::Operations::Create::ClassMethods)
+    end
+  end
+
   describe '#distinct?' do
     context 'when the attribute is true' do
       before { response['distinct'] = true }
