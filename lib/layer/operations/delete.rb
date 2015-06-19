@@ -1,16 +1,19 @@
 module Layer
   module Operations
-    module Create
+    module Delete
 
       module ClassMethods
-        def create(attributes = {}, client = self.client)
-          response = client.post(url, attributes)
-          from_response(response, client)
+        def delete(id, client = self.client)
+          client.delete("#{url}/#{id}")
         end
       end
 
       def self.included(base)
         base.extend(ClassMethods)
+      end
+
+      def delete
+        client.delete(url)
       end
 
     end

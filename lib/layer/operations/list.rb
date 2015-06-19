@@ -1,11 +1,11 @@
 module Layer
   module Operations
-    module Create
+    module List
 
       module ClassMethods
-        def create(attributes = {}, client = self.client)
-          response = client.post(url, attributes)
-          from_response(response, client)
+        def all(client = self.client)
+          response = client.get(url)
+          response.map { |attributes| from_response(attributes, client) }
         end
       end
 

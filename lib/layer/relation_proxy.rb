@@ -20,6 +20,10 @@ module Layer
       resource_type.respond_to?(method, include_private) || super
     end
 
+    def client
+      base.client
+    end
+
   private
 
     def method_missing(method, *args, &block)

@@ -3,7 +3,7 @@ module Layer
     module Find
 
       module ClassMethods
-        def find(id, client = Client.new)
+        def find(id, client = self.client)
           response = client.get("#{url}/#{id}")
           from_response(response, client)
         end

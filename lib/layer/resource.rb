@@ -2,6 +2,8 @@ module Layer
   class Resource
 
     class << self
+      attr_writer :client
+
       def class_name
         name.split('::')[-1]
       end
@@ -13,9 +15,15 @@ module Layer
       def from_response(attributes, client)
         new(attributes, client)
       end
+
+      def client
+        @client ||= Client.new
+      end
     end
 
-    def initialize(attributes = {}, client = Client.new)
+    attr_reader :client
+
+    def initialize(attributes = {}, client = self.class.client)
       @attributes = attributes
       @client = client
     end
@@ -34,7 +42,7 @@ module Layer
 
   private
 
-    attr_reader :attributes, :client
+    attr_reader :attributes
 
     def method_missing(method, *args, &block)
       if attributes.has_key?(method.to_s)
