@@ -7,6 +7,7 @@ require 'layer/conversation'
 require 'layer/message'
 require 'layer/user'
 require 'layer/block'
+require 'layer/announcement'
 
 module Layer
 end
