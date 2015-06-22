@@ -59,7 +59,7 @@ conversation = Layer::Conversation.find('CONVERSATION_ID_HERE')
 conversation.messages.create({ sender: { name: 'Server' }, parts: [{ body: 'Hello!', mime_type: 'text/plain' }])
 ```
 
-### Sending Messages
+### Sending Announcements
 
 You can send a announcements like this:
 
