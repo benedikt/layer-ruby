@@ -115,6 +115,13 @@ describe Layer::Client do
             .with(hash_including(headers: hash_including('Content-Type' => 'application/json')))
         end
 
+        it 'should set the If-None-Match header' do
+          pattern = /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/
+
+          expect(RestClient::Request).to have_received(:execute)
+            .with(hash_including(headers: hash_including('If-None-Match' => pattern)))
+        end
+
         it 'should allow additional headers' do
           expect(RestClient::Request).to have_received(:execute)
             .with(hash_including(headers: hash_including('X-Foo' => 'Bar')))

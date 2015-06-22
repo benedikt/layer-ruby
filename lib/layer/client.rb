@@ -1,4 +1,5 @@
 require 'rest-client'
+require 'securerandom'
 
 module Layer
   class Client
@@ -61,7 +62,8 @@ module Layer
       headers = {
         'Authorization' => "Bearer #{token}",
         'Accept' => 'application/vnd.layer+json; version=1.0',
-        'Content-Type' => 'application/json'
+        'Content-Type' => 'application/json',
+        'If-None-Match' => SecureRandom.uuid
       }.merge(headers)
 
       payload = payload.to_json
