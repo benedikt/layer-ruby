@@ -59,6 +59,26 @@ conversation = Layer::Conversation.find('CONVERSATION_ID_HERE')
 conversation.messages.create({ sender: { name: 'Server' }, parts: [{ body: 'Hello!', mime_type: 'text/plain' }])
 ```
 
+### Sending Messages
+
+You can send a announcements like this:
+
+```ruby
+Layer::Announcement.create({ recipients: 'everyone', sender: { name: 'Server' }, parts: [{ body: 'Hello!', mime_type: 'text/plain' }])
+```
+
+### Managing block lists
+
+Managing block lists is also possible:
+
+```ruby
+user = Layer::User.find('user_id')
+user.blocks.all # Returns a list of blocks
+user.blocks.create({ user_id: 'other_user' }) # Adds the other user to the block list
+user.blocks.delete('other_user') # Removes the other user from the block list
+user.blocks.all.first.delete # Removes the first entry from the block list
+```
+
 ### Using the gem with multiple applications at once
 
 It's possible to create a new instance of `Layer::Client` and passing both the app id and the token to the initializer:
