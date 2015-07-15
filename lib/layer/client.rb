@@ -17,12 +17,16 @@ module Layer
       def configure
         yield self
       end
+
+      def normalize_id(id)
+        id.to_s.split('/').last
+      end
     end
 
     attr_reader :app_id, :token
 
     def initialize(app_id = self.class.app_id, token = self.class.token)
-      @app_id = app_id
+      @app_id = self.class.normalize_id(app_id)
       @token = token
     end
 

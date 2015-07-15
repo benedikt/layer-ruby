@@ -4,6 +4,7 @@ module Layer
 
       module ClassMethods
         def find(id, client = self.client)
+          id = Layer::Client.normalize_id(id)
           response = client.get("#{url}/#{id}")
           from_response(response, client)
         end
@@ -21,4 +22,3 @@ module Layer
     end
   end
 end
-

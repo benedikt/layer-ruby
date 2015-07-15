@@ -52,6 +52,11 @@ describe Layer::Client do
       expect(subject.app_id).to eq('default_app_id')
     end
 
+    it 'should work with the new id format' do
+      client = described_class.new('layer:///apps/staging/custom_app_id', 'custom_platform_token')
+      expect(client.app_id).to eq('custom_app_id')
+    end
+
     it 'should use to the default plattform token' do
       expect(subject.token).to eq('default_platform_token')
     end

@@ -26,6 +26,11 @@ describe Layer::Conversation do
       expect(client).to have_received(:get).with("/conversations/1")
     end
 
+    it 'should work with the full id format' do
+      described_class.find('layer:///conversations/conversation_id', client)
+      expect(client).to have_received(:get).with("/conversations/conversation_id")
+    end
+
     it 'should return an instace' do
       expect(described_class.find('1', client))
         .to be_kind_of(described_class)

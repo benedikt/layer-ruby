@@ -4,6 +4,7 @@ module Layer
 
       module ClassMethods
         def delete(id, client = self.client)
+          id = Layer::Client.normalize_id(id)
           client.delete("#{url}/#{id}")
         end
       end
