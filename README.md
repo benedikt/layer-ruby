@@ -56,7 +56,7 @@ In order to send messages, you first have to load (or create) a Conversation. Af
 
 ```ruby
 conversation = Layer::Conversation.find('CONVERSATION_ID_HERE')
-conversation.messages.create({ sender: { name: 'Server' }, parts: [{ body: 'Hello!', mime_type: 'text/plain' }])
+conversation.messages.create({ sender: { name: 'Server' }, parts: [{ body: 'Hello!', mime_type: 'text/plain' }]})
 ```
 
 ### Sending Announcements
@@ -64,7 +64,7 @@ conversation.messages.create({ sender: { name: 'Server' }, parts: [{ body: 'Hell
 You can send a announcements like this:
 
 ```ruby
-Layer::Announcement.create({ recipients: 'everyone', sender: { name: 'Server' }, parts: [{ body: 'Hello!', mime_type: 'text/plain' }])
+Layer::Announcement.create({ recipients: 'everyone', sender: { name: 'Server' }, parts: [{ body: 'Hello!', mime_type: 'text/plain' }]})
 ```
 
 ### Managing block lists
