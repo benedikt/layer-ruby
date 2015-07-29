@@ -75,6 +75,23 @@ describe Layer::Conversation do
     end
   end
 
+  describe '#save' do
+    before do
+      allow(client).to receive(:patch).and_return(response)
+    end
+
+    it 'should update the changes on the server' do
+      subject.participants << '3'
+      subject.metadata[:foo] = 'bar'
+      subject.save
+
+      expect(client).to have_received(:patch).with(subject.url, [
+        { operation: 'add', property: 'participants', value: '3'},
+        { operation: 'set', property: 'metadata.foo', value: 'bar' }
+      ])
+    end
+  end
+
   describe '#messages' do
     it 'should return an relation proxy' do
       expect(subject.messages).to be_kind_of(Layer::RelationProxy)

@@ -21,11 +21,11 @@ module Layer
       end
     end
 
-    attr_reader :client
+    attr_accessor :client, :attributes
 
     def initialize(attributes = {}, client = self.class.client)
-      @attributes = attributes
-      @client = client
+      self.attributes = attributes
+      self.client = client
     end
 
     def url
@@ -41,8 +41,6 @@ module Layer
     end
 
   private
-
-    attr_reader :attributes
 
     def method_missing(method, *args, &block)
       if attributes.has_key?(method.to_s)

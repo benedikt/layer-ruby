@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/benedikt/layer-ruby.svg)](https://travis-ci.org/benedikt/layer-ruby)
 [![Gem Version](https://badge.fury.io/rb/layer-ruby.svg)](http://badge.fury.io/rb/layer-ruby)
 
-Ruby bindings for the [Layer Platform API](https://developer.layer.com/docs/platform). 
+Ruby bindings for the [Layer Platform API](https://developer.layer.com/docs/platform).
 
 ## Installation
 
@@ -23,7 +23,7 @@ Or install it yourself as:
 
 ## Usage
 
-Please refer to the [Layer Platform API documentation](https://developer.layer.com/docs/platform) for details about the required payloads and responses. 
+Please refer to the [Layer Platform API documentation](https://developer.layer.com/docs/platform) for details about the required payloads and responses.
 
 ### Configuration
 
@@ -49,6 +49,18 @@ To retrieve a existing conversation, just use `Conversation.find` passing it the
 ```ruby
 conversation = Layer::Conversation.find('CONVERSATION_ID_HERE')
 ```
+
+### Updating Conversations
+
+To update a conversation, just update the conversation's attributes and call `save`.
+
+```ruby
+conversation = Layer::Conversation.find('CONVERSATION_ID_HERE')
+conversation.participants << 3
+conversation.metadata[:foo] = 'bar'
+conversation.save
+```
+
 
 ### Sending Messages
 
@@ -87,7 +99,7 @@ It's possible to create a new instance of `Layer::Client` and passing both the a
 client = Layer::Client.new('YOUR_APP_ID_HERE', 'YOUR_PLATFORM_TOKEN_HERE')
 ```
 
-The client will not use any global configuration. You can pass the client as a second parameter to any operations (`create`, `find`) described above. 
+The client will not use any global configuration. You can pass the client as a second parameter to any operations (`create`, `find`) described above.
 
 ## Development
 
@@ -106,5 +118,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Related Work
 
-Check out the [layer-identity_token](https://github.com/dreimannzelt/layer-identity_token) gem to generate authentication tokens for the Layer SDK. 
-
+Check out the [layer-identity_token](https://github.com/dreimannzelt/layer-identity_token) gem to generate authentication tokens for the Layer SDK.

@@ -117,7 +117,7 @@ describe Layer::Client do
 
         it 'should set the Content-Type header' do
           expect(RestClient::Request).to have_received(:execute)
-            .with(hash_including(headers: hash_including('Content-Type' => 'application/json')))
+            .with(hash_including(headers: hash_including('Content-Type' => /application\/(json|vnd\.layer-patch\+json)/)))
         end
 
         it 'should set the If-None-Match header' do

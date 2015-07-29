@@ -15,7 +15,7 @@ module Layer
       end
 
       def reload
-        @attributes = client.get(url)
+        self.attributes = client.get(url)
         self
       end
 

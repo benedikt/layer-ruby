@@ -2,6 +2,7 @@ module Layer
   class Conversation < Resource
     include Operations::Find
     include Operations::Create
+    include Operations::Patch
 
     def messages
       RelationProxy.new(self, Message, [Operations::Create])

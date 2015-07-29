@@ -38,8 +38,10 @@ module Layer
       request(:post, *args)
     end
 
-    def patch(*args)
-      request(:patch, *args)
+    def patch(url, payload = {}, headers = {})
+      headers['Content-Type'] = 'application/vnd.layer-patch+json'
+
+      request(:patch, url, payload, headers)
     end
 
     def put(*args)
