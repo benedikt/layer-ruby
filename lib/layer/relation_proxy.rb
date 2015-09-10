@@ -7,7 +7,7 @@ module Layer
       @resource_type = resource_type
       @base = base
 
-      operations.each { |operation| singleton_class.include(operation::ClassMethods) }
+      operations.each { |operation| singleton_class.send(:include, operation::ClassMethods) }
 
       instance_eval(&block) if block_given?
     end
