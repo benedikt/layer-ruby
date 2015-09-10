@@ -37,13 +37,18 @@ module Layer
     end
 
     def respond_to_missing?(method, include_private = false)
-      attributes.has_key?(method.to_s) || super
+      attribute = method.to_s.sub(/=$/, '')
+
+      attributes.has_key?(attribute) || super
     end
 
   private
 
     def method_missing(method, *args, &block)
-      if attributes.has_key?(method.to_s)
+      if method.to_s =~ /=$/
+        attribute = method.to_s.sub(/=$/, '')
+        attributes[attribute] = args.first
+      elsif attributes.has_key?(method.to_s)
         attributes[method.to_s]
       else
         super

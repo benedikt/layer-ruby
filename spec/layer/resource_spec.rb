@@ -83,5 +83,12 @@ describe Layer::Resource do
         expect { subject.bar }.to raise_error(NoMethodError)
       end
     end
+
+    context 'when trying to set an attribute' do
+      it 'should set the attribute' do
+        subject.foo = 'bar'
+        expect(subject.foo).to eq('bar')
+      end
+    end
   end
 end

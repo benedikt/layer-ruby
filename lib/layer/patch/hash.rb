@@ -10,7 +10,7 @@ module Layer
 
       def []=(key, value)
         patch.set(key, value)
-        super
+        super(key, wrap(key, value))
       end
       alias :store :[]=
 
