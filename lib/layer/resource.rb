@@ -17,7 +17,7 @@ module Layer
       end
 
       def client
-        @client ||= Client.new
+        @client ||= Client::Platform.new
       end
     end
 
