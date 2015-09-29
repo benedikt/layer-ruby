@@ -1,6 +1,6 @@
 # Layer Platform API
 
-[![Build Status](https://travis-ci.org/benedikt/layer-ruby.svg)](https://travis-ci.org/benedikt/layer-ruby)
+[![Build Status](https://travis-ci.org/benedikt/layer-ruby.svg?branch=master)](https://travis-ci.org/benedikt/layer-ruby)
 [![Gem Version](https://badge.fury.io/rb/layer-ruby.svg)](http://badge.fury.io/rb/layer-ruby)
 
 Ruby bindings for the [Layer Platform API](https://developer.layer.com/docs/platform).
