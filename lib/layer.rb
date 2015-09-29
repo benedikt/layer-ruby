@@ -1,4 +1,5 @@
 require 'layer/version'
+require 'layer/exceptions'
 require 'layer/client'
 require 'layer/patch'
 require 'layer/operations'
@@ -11,23 +12,5 @@ require 'layer/block'
 require 'layer/announcement'
 
 module Layer
-  class Exception < RuntimeError
-  end
 
-  class ClientException < Exception
-    attr_reader :original_exception
-
-    def initialize(original_exception)
-      @original_exception = original_exception
-    end
-
-    def message
-      "#{original_exception.message}\n\n#{JSON.pretty_generate(json)}\n\n"
-    end
-
-    def json
-      JSON.parse(original_exception.http_body)
-    end
-
-  end
 end
