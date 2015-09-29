@@ -76,6 +76,8 @@ module Layer
 
       response = RestClient::Request.execute(method: method, url: url, payload: payload, headers: headers)
       response.empty? ? nil : JSON.parse(response)
+    rescue RestClient::Exception
+      raise Layer::ClientException.new($!)
     end
 
   end
