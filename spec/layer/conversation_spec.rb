@@ -92,6 +92,20 @@ describe Layer::Conversation do
     end
   end
 
+  describe '#delete' do
+    it 'should delete the conversation' do
+      expect(client).to receive(:delete).with(subject.url)
+      subject.delete
+    end
+  end
+
+  describe '#destroy' do
+    it 'should destroy the conversation' do
+      expect(client).to receive(:delete).with(subject.url, {}, { params: { destroy: true } })
+      subject.destroy
+    end
+  end
+
   describe '#messages' do
     it 'should return an relation proxy' do
       expect(subject.messages).to be_kind_of(Layer::RelationProxy)

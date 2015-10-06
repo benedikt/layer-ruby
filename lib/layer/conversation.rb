@@ -3,7 +3,13 @@ module Layer
     include Operations::Find
     include Operations::List
     include Operations::Create
+    include Operations::Delete
     include Operations::Patch
+
+    def self.destroy(id, client = self.client)
+      id = Layer::Client.normalize_id(id)
+      client.delete("#{url}/#{id}", {}, { params: { destroy: true } })
+    end
 
     def messages
       RelationProxy.new(self, Message, [Operations::Create, Operations::List])
@@ -15,6 +21,10 @@ module Layer
 
     def created_at
       Time.parse(attributes['created_at'])
+    end
+
+    def destroy
+      client.delete(url, {}, { params: { destroy: true } })
     end
 
   end
