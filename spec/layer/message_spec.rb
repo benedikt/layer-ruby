@@ -42,4 +42,18 @@ describe Layer::Message do
     end
   end
 
+  describe '#read!' do
+    it 'should mark the message as read' do
+      expect(client).to receive(:post).with(subject.url + "/receipts", { type: 'read' })
+      subject.read!
+    end
+  end
+
+  describe '#delivered!' do
+    it 'should mark the message as read' do
+      expect(client).to receive(:post).with(subject.url + "/receipts", { type: 'delivery' })
+      subject.delivered!
+    end
+  end
+
 end

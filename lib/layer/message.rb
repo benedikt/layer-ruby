@@ -9,5 +9,13 @@ module Layer
       Time.parse(attributes['sent_at'])
     end
 
+    def read!
+      client.post("#{url}/receipts", { type: 'read' })
+    end
+
+    def delivered!
+      client.post("#{url}/receipts", { type: 'delivery' })
+    end
+
   end
 end
