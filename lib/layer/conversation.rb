@@ -1,7 +1,7 @@
 module Layer
   class Conversation < Resource
     include Operations::Find
-    include Operations::List
+    include Operations::Paginate
     include Operations::Create
     include Operations::Delete
     include Operations::Patch
@@ -12,7 +12,7 @@ module Layer
     end
 
     def messages
-      RelationProxy.new(self, Message, [Operations::Create, Operations::List])
+      RelationProxy.new(self, Message, [Operations::Create, Operations::Paginate])
     end
 
     def distinct?
