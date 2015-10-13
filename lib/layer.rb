@@ -10,6 +10,7 @@ require 'layer/message'
 require 'layer/user'
 require 'layer/block'
 require 'layer/announcement'
+require 'layer/webhook'
 
 module Layer
 
