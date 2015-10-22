@@ -15,6 +15,14 @@ module Layer
       RelationProxy.new(self, Message, [Operations::Create, Operations::Paginate])
     end
 
+    def metadata
+      attributes['metadata'] ||= {}
+    end
+
+    def participants
+      attributes['participants'] ||= []
+    end
+
     def distinct?
       attributes['distinct']
     end
