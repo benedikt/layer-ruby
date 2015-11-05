@@ -12,7 +12,7 @@ module Layer
     end
 
     def messages
-      RelationProxy.new(self, Message, [Operations::Create, Operations::Paginate])
+      RelationProxy.new(self, Message, [Operations::Create, Operations::Paginate, Operations::Find])
     end
 
     def metadata
