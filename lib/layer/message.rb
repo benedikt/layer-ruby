@@ -1,5 +1,6 @@
 module Layer
   class Message < Resource
+    include Operations::Find
 
     def conversation
       Conversation.from_response(attributes['conversation'], client)
