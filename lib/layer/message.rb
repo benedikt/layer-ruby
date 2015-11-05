@@ -11,12 +11,15 @@ module Layer
     end
 
     def read!
-      client.post("#{url}/receipts", { type: 'read' })
+      client.post(receipts_url, { type: 'read' })
     end
 
     def delivered!
-      client.post("#{url}/receipts", { type: 'delivery' })
+      client.post(receipts_url, { type: 'delivery' })
     end
 
+    def receipts_url
+      attributes['receipts_url'] || "#{url}/receipts"
+    end
   end
 end
