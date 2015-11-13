@@ -5,6 +5,11 @@ module Layer
     include Operations::Create
     include Operations::Delete
 
+    # @!parse extend Layer::Operations::Find::ClassMethods
+    # @!parse extend Layer::Operations::List::ClassMethods
+    # @!parse extend Layer::Operations::Create::ClassMethods
+    # @!parse extend Layer::Operations::Delete::ClassMethods
+
     def activate!
       client.post("#{url}/activate")
     end

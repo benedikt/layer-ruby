@@ -28,7 +28,7 @@ module Layer
         headers['Authorization'] ||= "Layer session-token=\"#{token}\""
 
         super
-      rescue Layer::Exceptions::AuthenticationRequired => exception
+      rescue Layer::Exceptions::Exceptions::AuthenticationRequired => exception
         authenticate(exception.response_json['data']['nonce'])
         retry
       end

@@ -1,7 +1,22 @@
 module Layer
+  # @example
+  #   content = Layer::Content.create('image/png', File.open('photo.png'))
+  #
+  #   message = Layer::Message.create({
+  #     sender: { name: 'Server' },
+  #     parts: [
+  #       { body: content.to_json, mime_type: content.mime_type }
+  #     ]
+  #   })
+  #
+  # @see https://developer.layer.com/docs/client/rest#rich-content Layer REST API documentation about rich content
+  # @!macro rest-api
   class Content < Resource
     include Operations::Create
     include Operations::Find
+
+    # @!parse extend Layer::Operations::Create::ClassMethods
+    # @!parse extend Layer::Operations::Find::ClassMethods
 
     def self.create(mime_type, file, client = self.client)
       response = client.post(url, {}, headers = {
