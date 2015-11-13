@@ -42,11 +42,11 @@ module Layer
     class InvalidHeader < ClientException; end
 
     class ResourceException < Exception; end
-    class AccessDenied < ClientException; end
-    class NotFound < ClientException; end
-    class ObjectDeleted < ClientException; end
-    class MissingProperty < ClientException; end
-    class InvalidProperty < ClientException; end
+    class AccessDenied < ResourceException; end
+    class NotFound < ResourceException; end
+    class ObjectDeleted < ResourceException; end
+    class MissingProperty < ResourceException; end
+    class InvalidProperty < ResourceException; end
     class Conflict < ResourceException; end
   end
 end
