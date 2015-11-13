@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/benedikt/layer-ruby.svg?branch=master)](https://travis-ci.org/benedikt/layer-ruby)
 [![Gem Version](https://badge.fury.io/rb/layer-ruby.svg)](http://badge.fury.io/rb/layer-ruby)
+[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/gems/layer-ruby)
 
 Ruby client for the [Layer Platform API](https://developer.layer.com/docs/platform) and [Layer Client REST API](https://developer.layer.com/docs/client/rest).
 
