@@ -62,6 +62,10 @@ Afterwards, pass the client as an additional argument to the resource's methods:
 Layer::Conversation.all(client)
 ```
 
+### Documentation
+
+Please refer to [the full documentation](http://rubydoc.info/gems/layer-ruby) for details on how to use Announcements, Block Lists, Conversations, Messages, Rich Content, and WebHooks.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake rspec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
