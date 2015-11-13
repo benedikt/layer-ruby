@@ -17,7 +17,7 @@ module Layer
       end
 
       def client
-        @client ||= Client.new
+        @client ||= Client::Platform.new
       end
     end
 
@@ -29,7 +29,7 @@ module Layer
     end
 
     def url
-      attributes['url']
+      attributes['url'] || (id && "#{self.class.url}/#{Layer::Client.normalize_id(id)}")
     end
 
     def id

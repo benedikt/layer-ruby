@@ -1,5 +1,6 @@
 require 'layer/operations/create'
 require 'layer/operations/find'
 require 'layer/operations/list'
+require 'layer/operations/paginate'
 require 'layer/operations/delete'
 require 'layer/operations/patch'

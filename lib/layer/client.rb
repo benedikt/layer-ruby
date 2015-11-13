@@ -1,6 +1,9 @@
 require 'rest-client'
 require 'securerandom'
 
+require 'layer/client/platform'
+require 'layer/client/rest'
+
 module Layer
   class Client
     class << self
@@ -21,13 +24,10 @@ module Layer
       def normalize_id(id)
         id.to_s.split('/').last
       end
-    end
 
-    attr_reader :app_id, :token
-
-    def initialize(app_id = self.class.app_id, token = self.class.token)
-      @app_id = self.class.normalize_id(app_id)
-      @token = token
+      def authenticate(app_id = self.app_id, &block)
+        Layer::Client::REST.new(app_id, &block)
+      end
     end
 
     def get(*args)
@@ -63,10 +63,9 @@ module Layer
   private
 
     def request(method, url, payload = {}, headers = {})
-      url = "https://api.layer.com/apps/#{app_id}#{url}" unless url.start_with?('https://api.layer.com')
+      url = "https://api.layer.com#{url}" unless url.start_with?('https://api.layer.com')
 
       headers = {
-        'Authorization' => "Bearer #{token}",
         'Accept' => 'application/vnd.layer+json; version=1.0',
         'Content-Type' => 'application/json',
         'If-None-Match' => SecureRandom.uuid
