@@ -5,7 +5,7 @@ module Layer
       identifier = JSON.parse(original_exception.http_body)['id']
       identifier.gsub!(/(?:_|(\/)|^)([a-z\d]*)/i) { $2.capitalize }
 
-      exception = const_get(identifier) rescue self
+      exception = const_get(identifier) rescue Exception
       exception.new(original_exception)
     rescue
       original_exception
