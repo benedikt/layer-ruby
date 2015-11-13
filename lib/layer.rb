@@ -16,10 +16,10 @@ require 'layer/webhook'
 
 
 # @!macro [new] platform-api
-#   @note This is only available via the Platform API
+#   @note This is only available via the Platform API.
 
 # @!macro [new] rest-api
-#   @note This is only available via the REST API
+#   @note This is only available via the REST API.
 #   @see file:README.md#label-Using+the+Layer+Client+REST+API Using the Client REST API
 
 # @!macro [new] various-apis
