@@ -5,7 +5,7 @@ module Layer
   #   message = Layer::Message.create({
   #     sender: { name: 'Server' },
   #     parts: [
-  #       { body: content.to_json, mime_type: content.mime_type }
+  #       { content: content, mime_type: 'image/png' }
   #     ]
   #   })
   #
