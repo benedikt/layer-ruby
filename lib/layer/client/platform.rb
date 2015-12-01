@@ -4,7 +4,7 @@ module Layer
 
       attr_reader :app_id, :token
 
-      def initialize(app_id = self.class.app_id, token = self.class.token)
+      def initialize(app_id = Layer::Client.app_id, token = Layer::Client.token)
         @app_id = self.class.normalize_id(app_id)
         @token = token
       end

@@ -34,7 +34,7 @@ describe Layer::Client do
 
     describe '.configure' do
       it 'should yield the client' do
-        expect { |block| described_class.configure(&block) }
+        expect { |block| Layer::Client.configure(&block) }
           .to yield_with_args(described_class)
       end
     end

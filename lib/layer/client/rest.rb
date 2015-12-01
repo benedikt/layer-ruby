@@ -15,7 +15,7 @@ module Layer
 
       attr_reader :token, :app_id, :block
 
-      def initialize(app_id = self.class.app_id, &block)
+      def initialize(app_id = Layer::Client.app_id, &block)
         @app_id = self.class.normalize_id(app_id)
         @block = block
         authenticate

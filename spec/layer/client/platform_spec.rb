@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Layer::Client::Platform do
   describe '.new' do
     before do
-      described_class.configure do |config|
+      Layer::Client.configure do |config|
         config.app_id = 'default_app_id'
         config.token = 'default_platform_token'
       end
@@ -32,7 +32,7 @@ describe Layer::Client::Platform do
   %w(get post patch put delete head options).each do |method|
     describe "##{method}" do
       before do
-        described_class.configure do |config|
+        Layer::Client.configure do |config|
           config.app_id = 'default_app_id'
           config.token = 'default_platform_token'
         end

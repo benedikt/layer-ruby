@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Layer::Client::REST do
 
   before do
-    described_class.configure do |config|
+    Layer::Client.configure do |config|
       config.app_id = 'default_app_id'
     end
   end
