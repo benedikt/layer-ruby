@@ -19,12 +19,12 @@ module Layer
     # @!parse extend Layer::Operations::Find::ClassMethods
 
     def self.create(mime_type, file, client = self.client)
-      response = client.post(url, {}, headers = {
+      response = client.post(url, {}, {
         'Upload-Content-Type' => mime_type,
         'Upload-Content-Length' => file.size
       })
 
-      attributes = response.merge('size' => file.size)
+      attributes = response.merge('size' => file.size, 'mime_type' => mime_type)
 
       from_response(attributes, client).tap do |content|
         content.upload(file)
@@ -43,8 +43,13 @@ module Layer
       attributes['refresh_url'] || "#{self.class.url}/#{Layer::Client.normalize_id(id)}"
     end
 
-    def to_json(*args)
-      { id: id, size: size }.to_json(*args)
+    def as_json(*args)
+      { id: id, size: size }
     end
+
+    def to_json(*args)
+      as_json.to_json(*args)
+    end
+
   end
 end

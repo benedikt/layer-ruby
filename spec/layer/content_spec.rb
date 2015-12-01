@@ -56,6 +56,12 @@ describe Layer::Content do
     end
   end
 
+  describe '#as_json' do
+    it 'should return the id and the size' do
+      expect(subject.as_json).to eq({ id: subject.id, size: subject.size })
+    end
+  end
+
   describe '#to_json' do
     it 'should return the id and the size' do
       expect(subject.to_json).to eq({ id: subject.id, size: subject.size }.to_json)
