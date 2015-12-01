@@ -39,10 +39,10 @@ end
 
 ### Using the gem with multiple applications at once
 
-It's possible to create a new instance of `Layer::Client` and passing both the app id and the token to the initializer:
+It's possible to create a new instance of `Layer::Client::Platform` and passing both the app id and the token to the initializer:
 
 ```ruby
-client = Layer::Client.new('YOUR_APP_ID_HERE', 'YOUR_PLATFORM_TOKEN_HERE')
+platform_client = Layer::Client::Platform.new('YOUR_APP_ID_HERE', 'YOUR_PLATFORM_TOKEN_HERE')
 ```
 
 The client will not use any global configuration. You can pass the client as a second parameter to any operations (`create`, `find`) described above.
