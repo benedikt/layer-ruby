@@ -48,6 +48,7 @@ module Layer
     # @return [Layer::Patch::Hash] the metadata hash
     def metadata
       attributes['metadata'] ||= {}
+      attributes['metadata']
     end
 
     # Returns the conversations metadata
@@ -55,6 +56,7 @@ module Layer
     # @return [Layer::Patch::Array] the participants array
     def participants
       attributes['participants'] ||= []
+      attributes['participants']
     end
 
     # Whether the conversation is distinct

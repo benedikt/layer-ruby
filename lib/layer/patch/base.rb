@@ -12,9 +12,9 @@ module Layer
       def wrap(property, object)
         case object
         when ::Array
-          Layer::Patch::Array.new(patch.nested(property), object)
+          return Layer::Patch::Array.new(patch.nested(property), object)
         when ::Hash
-          Layer::Patch::Hash.new(patch.nested(property), object)
+          return Layer::Patch::Hash.new(patch.nested(property), object)
         else
           object
         end

@@ -49,6 +49,8 @@ module Layer
       @parent ? parent.reset : @operations = []
     end
 
+    attr_reader :property
+
   private
 
     def operation(type, property = nil, options = {})
@@ -56,7 +58,7 @@ module Layer
     end
 
     def expand_property(property)
-      [@property, property].compact.join('.')
+      [@parent && @parent.property, @property, property].compact.join('.')
     end
   end
 end
