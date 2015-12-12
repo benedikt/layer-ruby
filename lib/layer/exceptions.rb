@@ -28,8 +28,9 @@ module Layer
     end
 
     class ClientException < Exception; end
+    class InternalServerError < ClientException; end
     class ServiceUnavailable < ClientException; end
-    class InvalidAppId< ClientException; end
+    class InvalidAppId < ClientException; end
     class InvalidRequestId < ClientException; end
     class AuthenticationRequired < ClientException; end
     class AppSuspended < ClientException; end
