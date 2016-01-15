@@ -10,6 +10,8 @@ module Layer
   # @!macro various-apis
   class Message < Resource
     include Operations::Find
+    include Operations::Delete
+    include Operations::Destroy
 
     # @!parse extend Layer::Operations::Find::ClassMethods
 
