@@ -14,6 +14,8 @@ module Layer
     include Operations::Destroy
 
     # @!parse extend Layer::Operations::Find::ClassMethods
+    # @!parse extend Layer::Operations::Delete::ClassMethods
+    # @!parse extend Layer::Operations::Destroy::ClassMethods
 
     # Returns the conversation this message belongs to
     #

@@ -26,6 +26,7 @@ module Layer
     # @!parse extend Layer::Operations::Paginate::ClassMethods
     # @!parse extend Layer::Operations::Create::ClassMethods
     # @!parse extend Layer::Operations::Delete::ClassMethods
+    # @!parse extend Layer::Operations::Destroy::ClassMethods
 
     # Returns the converations messages
     #
