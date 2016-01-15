@@ -1,5 +1,6 @@
 module Layer
   class RelationProxy
+    include Enumerable
 
     attr_reader :resource_type, :base
 
@@ -22,6 +23,10 @@ module Layer
 
     def client
       base.client
+    end
+
+    def each(&block)
+      all.each(&block)
     end
 
   private
