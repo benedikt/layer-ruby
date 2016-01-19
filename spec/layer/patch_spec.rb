@@ -98,6 +98,13 @@ describe Layer::Patch do
         value: 'value'
       })
     end
+
+    it 'should not loose the reference to the operations array' do
+      nested = subject.nested('parent')
+      nested.operations
+      subject.reset
+      expect(nested.operations).to be(subject.operations)
+    end
   end
 
 end

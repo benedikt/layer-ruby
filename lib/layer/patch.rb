@@ -46,7 +46,7 @@ module Layer
     end
 
     def reset
-      @parent ? parent.reset : @operations = []
+      @parent ? parent.reset : operations.clear
     end
 
     attr_reader :property

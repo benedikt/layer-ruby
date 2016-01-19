@@ -7,7 +7,7 @@ module Layer
       # @return [Boolean] whether saving was successful
       # @raise [Layer::Exceptions::Exception] a subclass of Layer::Exceptions::Exception describing the error
       def save
-        client.patch(url, patch.operations)
+        client.patch(url, patch.operations.dup)
         patch.reset
         true
       end
