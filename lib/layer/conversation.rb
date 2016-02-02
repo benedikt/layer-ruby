@@ -28,7 +28,7 @@ module Layer
     # @!parse extend Layer::Operations::Delete::ClassMethods
     # @!parse extend Layer::Operations::Destroy::ClassMethods
 
-    # Returns the converations messages
+    # Returns the conversations messages
     #
     # @return [Layer::RelationProxy] the conversation's messages
     # @!macro various-apis

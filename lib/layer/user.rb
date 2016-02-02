@@ -19,5 +19,12 @@ module Layer
       end
     end
 
+    # Returns the user messages
+    #
+    # @return [Layer::RelationProxy] the user's messages
+    # @!macro various-apis
+    def messages
+      RelationProxy.new(self, Message, [Operations::Find])
+    end
   end
 end
