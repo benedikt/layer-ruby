@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Layer::Webhook do
 
-  let(:client) { instance_double('Layer::Client') }
+  let(:client) { instance_double('Layer::Client::Webhook') }
   let(:response) do
     {
       'id' => 'layer:///apps/default_app_id/webhooks/webhook_id',
@@ -22,6 +22,12 @@ describe Layer::Webhook do
   end
 
   subject { described_class.from_response(response, client) }
+
+  describe '.client' do
+    it 'should use its own client' do
+      expect(described_class.client).to be_kind_of(Layer::Client::Webhook)
+    end
+  end
 
   describe '#created_at' do
     it 'should return the time the webhook was created at' do

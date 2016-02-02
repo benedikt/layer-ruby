@@ -2,6 +2,7 @@ require 'rest-client'
 require 'securerandom'
 
 require 'layer/client/platform'
+require 'layer/client/webhook'
 require 'layer/client/rest'
 
 module Layer

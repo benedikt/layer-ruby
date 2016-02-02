@@ -21,6 +21,10 @@ module Layer
     # @!parse extend Layer::Operations::Create::ClassMethods
     # @!parse extend Layer::Operations::Delete::ClassMethods
 
+    def self.client
+      @client ||= Client::Webhook.new
+    end
+
     # Activate this webhook
     def activate!
       client.post("#{url}/activate")
