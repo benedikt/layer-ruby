@@ -90,4 +90,19 @@ describe Layer::User do
 
   end
 
+  describe '#messages' do
+    it 'should return an relation proxy' do
+      expect(subject.messages).to be_kind_of(Layer::RelationProxy)
+    end
+
+    it 'should have Message as resource_type' do
+      expect(subject.messages.resource_type).to eq(Layer::Message)
+    end
+
+    it 'should support the create operation' do
+      expect(subject.messages).to be_kind_of(Layer::Operations::Find::ClassMethods)
+    end
+  end
+
+
 end
