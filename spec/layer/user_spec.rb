@@ -90,6 +90,24 @@ describe Layer::User do
 
   end
 
+  describe '#conversations' do
+    it 'should return an relation proxy' do
+      expect(subject.conversations).to be_kind_of(Layer::RelationProxy)
+    end
+
+    it 'should have Message as resource_type' do
+      expect(subject.conversations.resource_type).to eq(Layer::Conversation)
+    end
+
+    it 'should support the find operation' do
+      expect(subject.conversations).to be_kind_of(Layer::Operations::Find::ClassMethods)
+    end
+
+    it 'should support the list operation' do
+      expect(subject.conversations).to be_kind_of(Layer::Operations::List::ClassMethods)
+    end
+  end
+
   describe '#messages' do
     it 'should return an relation proxy' do
       expect(subject.messages).to be_kind_of(Layer::RelationProxy)
@@ -99,7 +117,7 @@ describe Layer::User do
       expect(subject.messages.resource_type).to eq(Layer::Message)
     end
 
-    it 'should support the create operation' do
+    it 'should support the find operation' do
       expect(subject.messages).to be_kind_of(Layer::Operations::Find::ClassMethods)
     end
   end

@@ -5,6 +5,10 @@ module Layer
       from_response({ 'url' => "/users/#{id}" }, client)
     end
 
+    # Returns the users blocked by this user
+    #
+    # @return [Layer::RelationProxy] the users the user blocks
+    # @!macro platform-api
     def blocks
       RelationProxy.new(self, Block, [Operations::Create, Operations::List, Operations::Delete]) do
         def from_response(response, client)
@@ -19,10 +23,18 @@ module Layer
       end
     end
 
-    # Returns the user messages
+    # Returns the user's conversations
+    #
+    # @return [Layer::RelationProxy] the user's conversations
+    # @!macro platform-api
+    def conversations
+      RelationProxy.new(self, Conversation, [Operations::List, Operations::Find])
+    end
+
+    # Returns the user's messages
     #
     # @return [Layer::RelationProxy] the user's messages
-    # @!macro various-apis
+    # @!macro platform-api
     def messages
       RelationProxy.new(self, Message, [Operations::Find])
     end
