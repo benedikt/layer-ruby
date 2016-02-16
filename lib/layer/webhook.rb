@@ -1,13 +1,13 @@
 module Layer
   # @example
   #   webhook = Layer::Webhook.create({
-  #     target_config: { foo: :bar },
+  #     version: '1.0',
+  #     target_url: 'https://example.com/layer/webhook',
+  #     events: ['message.sent'],
   #     secret: 'my-secret',
-  #     event_types: ['message.sent'],
-  #     target_url: 'http://example.com/layer/webhook'
+  #     config: { foo: :bar }
   #   })
-  # @see https://gist.github.com/vtrehan/9ef1e16db5e74305ddf3 Layer Webhook documentation (Prerelease)
-  # @note This feature is still in beta at Layer. Please contact Layer to enable webhooks for your account.
+  # @see https://developer.layer.com/docs/webhooks/introduction
   #
   # @!macro platform-api
   class Webhook < Resource
