@@ -36,6 +36,27 @@ module Layer
       RelationProxy.new(self, Message, [Operations::Create, Operations::Paginate, Operations::Find, Operations::Delete, Operations::Destroy])
     end
 
+    # Allows creating and finding of the conversation's rich content
+    #
+    # @return [Layer::RelationProxy] the conversation's rich content
+    # @!macro platform-api
+    def contents
+      RelationProxy.new(self, Content, [Operations::Create, Operations::Find]) do
+        def create(mime_type, file, client = self.client)
+          response = client.post(url, {}, {
+            'Upload-Content-Type' => mime_type,
+            'Upload-Content-Length' => file.size
+          })
+
+          attributes = response.merge('size' => file.size, 'mime_type' => mime_type)
+
+          Content.from_response(attributes, client).tap do |content|
+            content.upload(file)
+          end
+        end
+      end
+    end
+
     # Returns the conversations metadata
     #
     # @return [Layer::Patch::Hash] the metadata hash

@@ -9,8 +9,14 @@ module Layer
   #     ]
   #   })
   #
+  # @example
+  #   conversation = Layer::Conversation.find('layer-conversation-id-here')
+  #   content = conversation.contents.create('image/png', File.open('photo.png'))
+  #
+  #
   # @see https://developer.layer.com/docs/client/rest#rich-content Layer REST API documentation about rich content
-  # @!macro rest-api
+  # @see https://developer.layer.com/docs/platform/messages#rich-content Layer Platform API documentation about rich content
+  # @!macro various-apis
   class Content < Resource
     include Operations::Create
     include Operations::Find
