@@ -23,6 +23,23 @@ module Layer
       end
     end
 
+    # Returns the identity object for this user
+    #
+    # @return [Layer::RelationProxy] identity object
+    # @!macro platform-api
+    def identity
+      RelationProxy.new(self, Identity, [Operations::Create]) do
+        def get(client = self.client)
+          response = client.get(url)
+          from_response(response, client)
+        end
+
+        def delete(client = self.client)
+          client.delete(url)
+        end
+      end
+    end
+
     # Returns the user's conversations
     #
     # @return [Layer::RelationProxy] the user's conversations
