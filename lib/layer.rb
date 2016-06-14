@@ -11,6 +11,7 @@ require 'layer/content'
 require 'layer/message'
 require 'layer/user'
 require 'layer/block'
+require 'layer/identity'
 require 'layer/announcement'
 require 'layer/webhook'
 
