@@ -90,6 +90,63 @@ describe Layer::User do
 
   end
 
+  describe '#identity' do
+    it 'should return an relation proxy' do
+      expect(subject.identity).to be_kind_of(Layer::RelationProxy)
+    end
+
+    it 'should have Identity as resource_type' do
+      expect(subject.identity.resource_type).to eq(Layer::Identity)
+    end
+
+    it 'should support the create operation' do
+      expect(subject.identity).to be_kind_of(Layer::Operations::Create::ClassMethods)
+    end
+
+    describe '#create' do
+      before do
+        allow(client).to receive(:post).and_return(nil)
+      end
+
+      it 'should fake the identity resource' do
+        identity = subject.identity.create({ 'first_name' => 'Frodo' }, client)
+        expect(identity).to be_instance_of(Layer::Identity)
+      end
+
+      it 'should create the identity via the API' do
+        identity = subject.identity.create({ 'first_name' => 'Frodo' }, client)
+        expect(client).to have_received(:post).with('/users/1/identity', { 'first_name' => 'Frodo' })
+      end
+    end
+
+    describe '#get' do
+      before do
+        allow(client).to receive(:get).and_return({ 'first_name' => 'Frodo', 'last_name' => 'Baggins' })
+      end
+
+      it 'should return a Identity' do
+        expect(subject.identity.get.class).to eq(Layer::Identity)
+      end
+
+      it 'should fetch the identity from via the API' do
+        subject.identity.get
+        expect(client).to have_received(:get).with('/users/1/identity')
+      end
+    end
+
+    describe '#delete' do
+      before do
+        allow(client).to receive(:delete).and_return(nil)
+      end
+
+      it 'should delete the identity via the API' do
+        subject.identity.delete
+        expect(client).to have_received(:delete).with('/users/1/identity')
+      end
+    end
+
+  end
+
   describe '#conversations' do
     it 'should return an relation proxy' do
       expect(subject.conversations).to be_kind_of(Layer::RelationProxy)
