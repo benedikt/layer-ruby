@@ -100,12 +100,20 @@ describe Layer::User do
     end
 
     it 'should support the create operation' do
-      expect(subject.identity).to be_kind_of(Layer::Operations::Create::ClassMethods)
+      expect(subject.identity).to respond_to(:create)
+    end
+
+    it 'should lazy fetch the identity from via the API' do
+      allow(client).to receive(:get).and_return({ 'first_name' => 'Frodo' })
+
+      subject.identity.first_name
+      expect(client).to have_received(:get).with('/users/1/identity')
     end
 
     describe '#create' do
       before do
         allow(client).to receive(:post).and_return(nil)
+        allow(client).to receive(:get).and_return({ 'first_name' => 'Frodo' })
       end
 
       it 'should fake the identity resource' do
@@ -114,23 +122,8 @@ describe Layer::User do
       end
 
       it 'should create the identity via the API' do
-        identity = subject.identity.create({ 'first_name' => 'Frodo' }, client)
+        subject.identity.create({ 'first_name' => 'Frodo' }, client)
         expect(client).to have_received(:post).with('/users/1/identity', { 'first_name' => 'Frodo' })
-      end
-    end
-
-    describe '#get' do
-      before do
-        allow(client).to receive(:get).and_return({ 'first_name' => 'Frodo', 'last_name' => 'Baggins' })
-      end
-
-      it 'should return a Identity' do
-        expect(subject.identity.get.class).to eq(Layer::Identity)
-      end
-
-      it 'should fetch the identity from via the API' do
-        subject.identity.get
-        expect(client).to have_received(:get).with('/users/1/identity')
       end
     end
 

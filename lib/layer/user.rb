@@ -28,10 +28,15 @@ module Layer
     # @return [Layer::RelationProxy] identity object
     # @!macro platform-api
     def identity
-      RelationProxy.new(self, Identity, [Operations::Create]) do
-        def get(client = self.client)
-          response = client.get(url)
-          from_response(response, client)
+      SingletonRelationProxy.new(self, Layer::Identity) do
+        def from_response(response, client)
+          response['url'] ||= "#{base.url}#{resource_type.url}"
+          super
+        end
+
+        def create(attributes, client = self.client)
+          client.post(url, attributes)
+          fetch
         end
 
         def delete(client = self.client)
