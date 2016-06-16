@@ -25,6 +25,7 @@ module Layer
 
       def request(method, url, payload = {}, headers = {})
         url = "https://api.layer.com#{url}" unless url.start_with?('https://api.layer.com')
+        headers['Accept'] ||= 'application/vnd.layer+json; version=1.0'
         headers['Authorization'] ||= "Layer session-token=\"#{token}\""
 
         super

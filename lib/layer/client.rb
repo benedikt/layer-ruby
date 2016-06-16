@@ -67,7 +67,6 @@ module Layer
       url = "https://api.layer.com#{url}" unless url.start_with?('https://api.layer.com')
 
       headers = {
-        'Accept' => 'application/vnd.layer+json; version=1.0',
         'Content-Type' => 'application/json',
         'If-None-Match' => SecureRandom.uuid
       }.merge(headers)
