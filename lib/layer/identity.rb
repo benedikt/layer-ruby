@@ -3,7 +3,7 @@ module Layer
   #
   # @example
   #   user = Layer::User.find('user_id')
-  #   user.identity.get # Returns user identity
+  #   user.identity # Returns user identity
   #   user.identity.create({ first_name: 'Frodo', last_name: 'Baggins'}) # Creates new identity
   #   user.identity.delete # Removes identity
   #
