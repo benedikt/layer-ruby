@@ -25,8 +25,31 @@ module Layer
     # @!parse extend Layer::Operations::Find::ClassMethods
     # @!parse extend Layer::Operations::Paginate::ClassMethods
     # @!parse extend Layer::Operations::Create::ClassMethods
-    # @!parse extend Layer::Operations::Delete::ClassMethods
-    # @!parse extend Layer::Operations::Destroy::ClassMethods
+
+    # Deletes the resource with the given id
+    #
+    # In the REST API, this deletes the conversation for the current user only
+    #
+    # @param id [String] the resource's id
+    # @param options [Hash] the options for the delete request (REST API only: `leave: true/false`, `mode: all_participants/my_devices`)
+    # @param client [Layer::Client] the client to use to make this request
+    # @raise [Layer::Exceptions::Exception] a subclass of Layer::Exceptions::Exception describing the error
+    def self.delete(id, options = {}, client = self.client)
+      id = Layer::Client.normalize_id(id)
+      options = { mode: :my_devices }.merge(options)
+      client.delete("#{url}/#{id}", {}, { params: options })
+    end
+
+    # Destroys the resource with the given id
+    #
+    # In the REST API, this deletes the conversation for everyone
+    #
+    # @param id [String] the resource's id
+    # @param client [Layer::Client] the client to use to make this request
+    # @raise [Layer::Exceptions::Exception] a subclass of Layer::Exceptions::Exception describing the error
+    def self.destroy(id, client = self.client)
+      delete(id, { mode: :all_participants }, client)
+    end
 
     # Returns the conversations messages
     #
@@ -85,6 +108,22 @@ module Layer
     # @return [Time] the time the conversation was created at
     def created_at
       Time.parse(attributes['created_at'])
+    end
+
+    # Destroys the conversation, removing it for everyone
+    #
+    # @raise [Layer::Exceptions::Exception] a subclass of Layer::Exceptions::Exception describing the error
+    def destroy
+      delete(mode: :all_participants)
+    end
+
+    # Deletes the conversation, removing it from the user's devices by default
+    #
+    # @param options [Hash] the options for the delete request (REST API only: `leave: true/false`, `mode: all_participants/my_devices`)
+    # @raise [Layer::Exceptions::Exception] a subclass of Layer::Exceptions::Exception describing the error
+    def delete(options = {})
+      options = { mode: :my_devices }.merge(options)
+      client.delete(url, {}, { params: options })
     end
 
   end

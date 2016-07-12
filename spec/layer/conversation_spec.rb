@@ -94,14 +94,19 @@ describe Layer::Conversation do
 
   describe '#delete' do
     it 'should delete the conversation' do
-      expect(client).to receive(:delete).with(subject.url)
+      expect(client).to receive(:delete).with(subject.url, {}, { params: { mode: :my_devices } })
       subject.delete
+    end
+
+    it 'should delete the conversation and respect the leave parameter' do
+      expect(client).to receive(:delete).with(subject.url, {}, { params: { mode: :my_devices, leave: true } })
+      subject.delete(leave: true)
     end
   end
 
   describe '#destroy' do
     it 'should destroy the conversation' do
-      expect(client).to receive(:delete).with(subject.url, {}, { params: { destroy: true } })
+      expect(client).to receive(:delete).with(subject.url, {}, { params: { mode: :all_participants } })
       subject.destroy
     end
   end
