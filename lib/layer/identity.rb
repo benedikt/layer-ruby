@@ -17,5 +17,10 @@ module Layer
     def self.url
       '/identity'
     end
+
+    def attributes=(attributes)
+      attributes['metadata'] ||= {}
+      super
+    end
   end
 end
