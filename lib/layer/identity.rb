@@ -22,5 +22,11 @@ module Layer
       attributes['metadata'] ||= {}
       super
     end
+
+    def metadata=(metadata)
+      metadata.each_pair do |key, value|
+        self.metadata[key] = value
+      end
+    end
   end
 end
