@@ -17,5 +17,16 @@ module Layer
     def self.url
       '/identity'
     end
+
+    def attributes=(attributes)
+      attributes['metadata'] ||= {}
+      super
+    end
+
+    def metadata=(metadata)
+      metadata.each_pair do |key, value|
+        self.metadata[key] = value
+      end
+    end
   end
 end
