@@ -4,7 +4,7 @@
 [![Gem Version](https://badge.fury.io/rb/layer-ruby.svg)](http://badge.fury.io/rb/layer-ruby)
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/gems/layer-ruby)
 
-Ruby client for the [Layer Platform API](https://developer.layer.com/docs/platform) and [Layer Client REST API](https://developer.layer.com/docs/client/rest).
+Ruby client for the [Layer Server API](https://docs.layer.com/reference/server_api/introduction) and [Layer Client API](https://docs.layer.com/reference/client_api/introduction).
 
 ## Installation
 
