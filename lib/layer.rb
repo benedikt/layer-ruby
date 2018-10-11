@@ -1,3 +1,5 @@
+require 'json'
+
 require 'layer/version'
 require 'layer/exceptions'
 require 'layer/client'
